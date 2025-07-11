@@ -1,0 +1,12 @@
+export interface Message {
+  id: string;
+  text: string;
+  sender: 'user' | 'bot';
+  timestamp: Date;
+}
+
+export interface AppointmentData {
+  name?: string;
+  age?: string;
+  time?: string;
+}
