@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banking Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                        <circle cx="16" cy="16" r="16" fill="#3B82F6"/>
+                        <path d="M12 10h8v2h-8v-2zm0 4h8v2h-8v-2zm0 4h5v2h-5v-2z" fill="white"/>
+                    </svg>
+                    <span>BankPro</span>
+                </div>
+                <button class="mobile-toggle" id="mobileToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="#" class="active">Dashboard</a></li>
+                    <li><a href="#">Accounts</a></li>
+                    <li><a href="#">Transactions</a></li>
+                    <li><a href="#">Cards</a></li>
+                    <li><a href="#">Loans</a></li>
+                    <li><a href="#">Investments</a></li>
+                    <li><a href="#">Settings</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="main-header">
+                <h1>Dashboard</h1>
+                <div class="user-info">
+                    <span>Welcome back, Divya!</span>
+                    <div class="avatar">D</div>
+                </div>
+            </div>
+
+            <!-- Financial Cards Row -->
+            <div class="cards-row">
+                <div class="card balance-card">
+                    <div class="card-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L2 7v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V7l-10-5z"/>
+                            <polyline points="9,22 9,12 15,12 15,22"/>
+                        </svg>
+                    </div>
+                    <div class="card-content">
+                        <h3>Total Balance</h3>
+                        <p class="amount">$24,580.50</p>
+                        <span class="change positive">+2.5%</span>
+                    </div>
+                </div>
+
+                <div class="card income-card">
+                    <div class="card-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                            <rect x="2" y="11" width="20" height="11" rx="2" ry="2"/>
+                            <circle cx="12" cy="16" r="1"/>
+                        </svg>
+                    </div>
+                    <div class="card-content">
+                        <h3>Monthly Income</h3>
+                        <p class="amount">$8,420.00</p>
+                        <span class="change positive">+5.2%</span>
+                    </div>
+                </div>
+
+                <div class="card expense-card">
+                    <div class="card-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
+                            <rect x="8" y="2" width="8" height="4" rx="1" ry="1"/>
+                        </svg>
+                    </div>
+                    <div class="card-content">
+                        <h3>Monthly Expenses</h3>
+                        <p class="amount">$4,280.75</p>
+                        <span class="change negative">-1.8%</span>
+                    </div>
+                </div>
+
+                <div class="card investment-card">
+                    <div class="card-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/>
+                        </svg>
+                    </div>
+                    <div class="card-content">
+                        <h3>Investments</h3>
+                        <p class="amount">$12,950.25</p>
+                        <span class="change positive">+8.7%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts Row -->
+            <div class="charts-row">
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <h3>Monthly Spending</h3>
+                        <select id="timeRange">
+                            <option>Last 6 months</option>
+                            <option>Last 12 months</option>
+                        </select>
+                    </div>
+                    <div class="bar-chart" id="barChart">
+                        <div class="chart-tooltip" id="barTooltip"></div>
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <h3>Expense Distribution</h3>
+                        <span class="total-spent">Total: $4,280.75</span>
+                    </div>
+                    <div class="pie-chart-container">
+                        <div class="pie-chart" id="pieChart">
+                            <div class="chart-tooltip" id="pieTooltip"></div>
+                        </div>
+                        <div class="pie-legend">
+                            <div class="legend-item">
+                                <span class="legend-color" style="background: #3B82F6;"></span>
+                                <span>Food & Dining</span>
+                                <span>$1,580</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color" style="background: #10B981;"></span>
+                                <span>Transportation</span>
+                                <span>$850</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color" style="background: #F59E0B;"></span>
+                                <span>Bills & Utilities</span>
+                                <span>$1,200</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color" style="background: #EF4444;"></span>
+                                <span>Entertainment</span>
+                                <span>$450</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color" style="background: #8B5CF6;"></span>
+                                <span>Shopping</span>
+                                <span>$200.75</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Transactions Table Row -->
+            <div class="transactions-section">
+                <div class="section-header">
+                    <h3>Recent Transactions</h3>
+                    <button class="view-all-btn">View All</button>
+                </div>
+                <div class="table-container">
+                    <table class="transactions-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Description</th>
+                                <th>Category</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Dec 15, 2024</td>
+                                <td>Grocery Store</td>
+                                <td>Food & Dining</td>
+                                <td class="amount negative">-$85.50</td>
+                                <td><span class="status completed">Completed</span></td>
+                            </tr>
+                            <tr>
+                                <td>Dec 14, 2024</td>
+                                <td>Salary Deposit</td>
+                                <td>Income</td>
+                                <td class="amount positive">+$4,200.00</td>
+                                <td><span class="status completed">Completed</span></td>
+                            </tr>
+                            <tr>
+                                <td>Dec 13, 2024</td>
+                                <td>Electric Bill</td>
+                                <td>Bills & Utilities</td>
+                                <td class="amount negative">-$125.75</td>
+                                <td><span class="status completed">Completed</span></td>
+                            </tr>
+                            <tr>
+                                <td>Dec 12, 2024</td>
+                                <td>Gas Station</td>
+                                <td>Transportation</td>
+                                <td class="amount negative">-$45.20</td>
+                                <td><span class="status completed">Completed</span></td>
+                            </tr>
+                            <tr>
+                                <td>Dec 11, 2024</td>
+                                <td>Coffee Shop</td>
+                                <td>Food & Dining</td>
+                                <td class="amount negative">-$12.50</td>
+                                <td><span class="status pending">Pending</span></td>
+                            </tr>
+                            <tr>
+                                <td>Dec 10, 2024</td>
+                                <td>Online Shopping</td>
+                                <td>Shopping</td>
+                                <td class="amount negative">-$299.99</td>
+                                <td><span class="status completed">Completed</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
